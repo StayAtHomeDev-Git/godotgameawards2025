@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godot Game Awards 2025 — Vote Now</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #478cbf;
+            --primary-dark: #2d5a8c;
+            --accent: #ffa500;
+            --bg: #0f0f0f;
+            --surface: #1a1a1a;
+            --text: #e8e8e8;
+            --text-muted: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #1a1a2e 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            border-bottom: 2px solid var(--primary);
+            background: rgba(15, 15, 15, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Category grid */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Category card */
+        .category {
+            background: var(--surface);
+            border: 1px solid rgba(71, 140, 191, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover {
+            border-color: var(--primary);
+            background: rgba(71, 140, 191, 0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(71, 140, 191, 0.15);
+        }
+
+        .category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .category .poll-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .poll-container.empty {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .poll-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 6px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(71, 140, 191, 0.2);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Instructions box */
+        .instructions {
+            background: rgba(71, 140, 191, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instructions h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .category {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .category:nth-child(1) { animation-delay: 0.1s; }
+        .category:nth-child(2) { animation-delay: 0.2s; }
+        .category:nth-child(3) { animation-delay: 0.3s; }
+        .category:nth-child(4) { animation-delay: 0.4s; }
+        .category:nth-child(5) { animation-delay: 0.5s; }
+        .category:nth-child(6) { animation-delay: 0.6s; }
+        .category:nth-child(7) { animation-delay: 0.7s; }
+        .category:nth-child(8) { animation-delay: 0.8s; }
+        .category:nth-child(9) { animation-delay: 0.9s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Godot Game Awards 2025</h1>
+        <p>Vote for your favorite games across all categories. The community decides!</p>
+    </header>
+
+    <div class="container">
+        <div class="instructions">
+            <h3>📋 How to Vote</h3>
+            <p>Scroll through each category below and cast your vote. Results update in real-time. One vote per category.</p>
+        </div>
+
+        <div class="categories">
+            <!-- Game of the Year -->
+            <div class="category">
+                <h2>Game of the Year</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Best Design -->
+            <div class="category">
+                <h2>Best Design</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Most Innovative & Technology -->
+            <div class="category">
+                <h2>Most Innovative & Technology</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Best Narrative -->
+            <div class="category">
+                <h2>Best Narrative</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Social Impact Award -->
+            <div class="category">
+                <h2>Social Impact Award</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Best Visual Art 2D -->
+            <div class="category">
+                <h2>Best Visual Art 2D</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Best Visual Art 3D -->
+            <div class="category">
+                <h2>Best Visual Art 3D</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Nostalgia Award -->
+            <div class="category">
+                <h2>Nostalgia Award</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+
+            <!-- Weird Award -->
+            <div class="category">
+                <h2>Weird Award</h2>
+                <div class="poll-container empty">
+                    <!-- Embed Strawpoll iframe here -->
+                    <p>Poll will appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Godot Game Awards 2025</strong> — Celebrating the best games made with Godot Engine</p>
+        <p><a href="https://godotengine.org/" target="_blank">Learn more about Godot</a></p>
+    </footer>
+</body>
+</html>
